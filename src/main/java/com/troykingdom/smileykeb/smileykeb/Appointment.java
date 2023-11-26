@@ -72,7 +72,7 @@ public class Appointment{
         System.out.print("Enter UID: ");
         String apptID = scan.nextLine();
 
-        String fileName = "C:\\Users\\Carl\\Documents\\NeBeansProjects\\SmileyKeb" + "Patient #" + apptID + ".txt";
+        String fileName = "Patient #" + apptID + ".txt";
 
         try {
             Scanner fileScanner = new Scanner(new File(fileName));
