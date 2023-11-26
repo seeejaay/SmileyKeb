@@ -48,7 +48,7 @@ public class Appointment{
     }
     
     private static void savePatientInfo(int uid, String fName, String lName, int age, String contactNum, String treatment) {
-        String fileName = "C:\\Users\\Carl\\Documents\\NeBeansProjects\\SmileyKeb" + "Patient #" + uid + ".txt";
+        String fileName = "Patient #" + uid + ".txt";
 
         try (FileWriter fw = new FileWriter(fileName)) {
             fw.write("UID: " + uid + "\t" + 
