@@ -41,13 +41,13 @@ public class Appointment{
         int age = scan.nextInt();
         
         System.out.print("Enter Contact Number: ");
-        String contactNum = scan.next();
+        int contactNum = scan.nextInt();
 
         int uid = uidCounter++;
         savePatientInfo(uid, fName, lName, age, contactNum, treatment);
     }
     
-    private static void savePatientInfo(int uid, String fName, String lName, int age, String contactNum, String treatment) {
+    private static void savePatientInfo(int uid, String fName, String lName, int age, int contactNum, String treatment) {
         String fileName = "Patient #" + uid + ".txt";
 
         try (FileWriter fw = new FileWriter(fileName)) {
