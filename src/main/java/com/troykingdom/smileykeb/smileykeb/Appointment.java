@@ -43,7 +43,31 @@ public class Appointment{
             System.out.println("Returning to Main Menu...");
             return;
         }
-        
+        if (treatmentChoice == 1) {
+            CheckUp checkupAppointment = new CheckUp();
+            checkupAppointment.performAppointment();
+            return;
+        }
+        if (treatmentChoice == 2) {
+            Cleaning cleaningAppointment = new Cleaning();
+            cleaningAppointment.performAppointment();
+            return;
+        }
+        if (treatmentChoice == 3) {
+            Fillings fillingsAppointment = new Fillings();
+            fillingsAppointment.performAppointment();
+            return;
+        }
+        if (treatmentChoice == 4) {
+            RootCanal rootcanalAppointment = new RootCanal();
+            rootcanalAppointment.performAppointment();
+            return;
+        }
+        if (treatmentChoice == 45) {
+            Extraction extractionAppointment = new Extraction();
+            extractionAppointment.performAppointment();
+            return;
+        }
         // date class 
         
         int uid = uidCounter++;
@@ -115,5 +139,35 @@ public class Appointment{
             default:
                 return "Unknown Treatment";
         }
+    }
+}
+class Cleaning extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Cleaning...");
+        System.out.println();
+    }
+}
+class CheckUp extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAdditional process: Check-Up");
+        System.out.println();
+    }
+}
+class Fillings extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Fillings...");
+        System.out.println();
+    }
+}
+class RootCanal extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: RootCanal...");
+        System.out.println();
+    }
+}
+class Extraction extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Extraction...");
+        System.out.println();
     }
 }
