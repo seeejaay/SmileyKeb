@@ -18,6 +18,7 @@ public class Appointment{
         
         System.out.print("Enter Age: ");
         int age = scan.nextInt();
+        scan.nextLine();
         
         System.out.print("Enter Contact Number: ");
         int contactNum = scan.nextInt();
@@ -38,10 +39,12 @@ public class Appointment{
         
         String treatment = getTreatmentName(treatmentChoice);
         
-        if (treatmentChoice == 8) {
+        if (treatmentChoice == 6) {
             System.out.println("Returning to Main Menu...");
             return;
         }
+        
+        // date class 
         
         int uid = uidCounter++;
         
