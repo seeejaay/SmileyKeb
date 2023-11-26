@@ -9,28 +9,7 @@ public class Appointment{
     private static int uidCounter = 1; 
     
     static void bookAppointment(Scanner scan) {
-        System.out.println("\nTREATMENTS AVAILABLE:");
-        System.out.println("[1] Cleaning");
-        System.out.println("[2] Extraction");
-        System.out.println("[3] Fillings");
-        System.out.println("[4] Root Canal");
-        System.out.println("[5] Brace Adjustments");
-        System.out.println("[6] Braces");
-        System.out.println("[7] Check-up");
-        System.out.println("[8] Back to Menu");
-        System.out.println("----------------------------");
         
-        System.out.print("Enter treatment choice: ");
-        int treatmentChoice = scan.nextInt();
-        scan.nextLine();
-        
-        if (treatmentChoice == 8) {
-            System.out.println("Returning to Main Menu...");
-            return;
-        }
-
-        String treatment = getTreatmentName(treatmentChoice);
-
         System.out.print("Enter First Name: ");
         String fName = scan.nextLine();
         
@@ -42,8 +21,30 @@ public class Appointment{
         
         System.out.print("Enter Contact Number: ");
         int contactNum = scan.nextInt();
-
+        scan.nextLine();
+        
+        System.out.println("\nTREATMENTS AVAILABLE:");
+        System.out.println("[1] Check-up");
+        System.out.println("[2] Cleaning");
+        System.out.println("[3] Fillings");
+        System.out.println("[4] Root Canal");
+        System.out.println("[5] Extraction");
+        System.out.println("[6] Back to Menu");
+        System.out.println("----------------------------");
+        
+        System.out.print("Enter treatment choice: ");
+        int treatmentChoice = scan.nextInt();
+        scan.nextLine();
+        
+        String treatment = getTreatmentName(treatmentChoice);
+        
+        if (treatmentChoice == 8) {
+            System.out.println("Returning to Main Menu...");
+            return;
+        }
+        
         int uid = uidCounter++;
+        
         savePatientInfo(uid, fName, lName, age, contactNum, treatment);
     }
     
@@ -51,11 +52,11 @@ public class Appointment{
         String fileName = "Patient #" + uid + ".txt";
 
         try (FileWriter fw = new FileWriter(fileName)) {
-            fw.write("UID: " + uid + "\t" + 
-                    "NAME: " + fName + " " + lName + "\t" + 
-                    "AGE: " + age + "\t" + 
-                    "CONTACT NUMBER: " + contactNum + "\t" + 
-                    "TREATMENT: " + treatment);
+            fw.write("UID: " + "\n" + uid + "\t\t" + 
+                    "NAME: " + "\n" + fName + " " + lName + "\t\t" + 
+                    "AGE: " + "\n" + age + "\t\t" + 
+                    "CONTACT NUMBER: " + "\n" + contactNum + "\t\t" + 
+                    "TREATMENT: " + "\n" + treatment);
             
             System.out.println();
             System.out.println("Appointment booked for: " + fName + " " + lName);
@@ -70,7 +71,7 @@ public class Appointment{
     static void openAppointment(Scanner scan) {
         System.out.println("\nOPEN EXISTING APPOINTMENT:");
         System.out.print("Enter UID: ");
-        String apptID = scan.nextLine();
+        int apptID = scan.nextInt();
 
         String fileName = "Patient #" + apptID + ".txt";
 
