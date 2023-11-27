@@ -62,7 +62,7 @@ public class Patient {
         try {
             File file = new File(filePath);
 
-            if (file.exists()) {
+            if (file.exists()){//checks if the file already exists 
                 System.out.println("Patient file already exists. Cannot overwrite.");
                 return;  // Return without saving if the file already exists
             }
@@ -78,7 +78,7 @@ public class Patient {
     
     public void saveUserName(){
         try {
-           FileWriter fw = new FileWriter("UserName/usernames.txt");
+           FileWriter fw = new FileWriter("UserName/usernames.txt",true);
            fw.write(getUName() + "\n");
            fw.close();
         }catch(IOException e){

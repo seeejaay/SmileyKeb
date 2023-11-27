@@ -42,13 +42,14 @@ public class SmileyKeb {
         System.out.println("Hint: First letter of lastname and birthyear");
         System.out.print("Enter your username: ");
         uName = scan.nextLine();
-        File file = new File(uName + ".txt");
+        File file = new File("PatientInfo/"+uName + ".txt");
         if (file.exists()) {
             System.out.println("Login Successful!");
             Appointment(scan);
             // You can read the file to get patient details if needed
         } else {
             System.out.println("Username not found. Please sign up.");
+            menu(scan);
         }
         
     }
@@ -56,6 +57,7 @@ public class SmileyKeb {
     public static void signUp(Scanner scan){
         
         Patient newPat = new Patient();
+        
         System.out.print("Enter your FirstName: ");
         newPat.setFName(scan.nextLine());
         
@@ -71,19 +73,20 @@ public class SmileyKeb {
         
         System.out.print("Enter your BirthYear: ");
         newPat.setbirthYear(scan.nextInt());
-        
+        scan.nextLine();
+        newPat.setUName();//fixed calling of setUName, becaues it was unreachable
         if (checkUNameDuplicate(newPat.getUName())) {
             System.out.println("Username already exists. Please choose another clinic :D"); // di ko alam irreturn haha
-            signUp(scan);
+            menu(scan);
         } else {
-            newPat.setUName();
+            //former location of setUName
             System.out.println("Your username is " + newPat.getUName() + "\n");
             newPat.savePatientDetails();
             newPat.saveUserName();
             menu(scan);
         }
     }
-    
+    //will put this method to Patient class later - Carl
     private static boolean checkUNameDuplicate(String username) {
     try {
         File file = new File("UserName/usernames.txt");
