@@ -6,24 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Appointment{
-    private static int uidCounter = 1; 
     
-    static void bookAppointment(Scanner scan) {
-        
-        System.out.print("Enter First Name: ");
-        String fName = scan.nextLine();
-        
-        System.out.print("Enter Last Name: ");
-        String lName = scan.nextLine();
-        
-        System.out.print("Enter Age: ");
-        int age = scan.nextInt();
-        scan.nextLine();
-        
-        System.out.print("Enter Contact Number: ");
-        int contactNum = scan.nextInt();
-        scan.nextLine();
-        
+    static String bookAppointment(Scanner scan) {
         System.out.println("\nTREATMENTS AVAILABLE:");
         System.out.println("[1] Check-up");
         System.out.println("[2] Cleaning");
@@ -39,37 +23,49 @@ public class Appointment{
         
         String treatment = getTreatmentName(treatmentChoice);
         
-        if (treatmentChoice == 6) {
-            System.out.println("Returning to Main Menu...");
-            return;
+        switch (treatmentChoice) {
+            case 1:
+                new CheckUp().performAppointment();
+                break;
+            case 2:
+                new Cleaning().performAppointment();
+                break;
+            case 3:
+                new Fillings().performAppointment();
+                break;
+            case 4:
+                new RootCanal().performAppointment();
+                break;
+            case 5:
+                new Extraction().performAppointment();
+                break;
+            default:
+                System.out.println("Invalid treatment choice");
         }
-        
         // date class 
-        
-        int uid = uidCounter++;
-        
-        savePatientInfo(uid, fName, lName, age, contactNum, treatment);
+        Patient patient = new Patient();
+        savePatientInfo(patient, treatment);
+        return null;
     }
     
-    private static void savePatientInfo(int uid, String fName, String lName, int age, int contactNum, String treatment) {
-        String fileName = "Patient #" + uid + ".txt";
+    private static void savePatientInfo(Patient patient, String treatment) {
+    String fileName = patient.getUName() + ".txt";
 
-        try (FileWriter fw = new FileWriter(fileName)) {
-            fw.write("UID: " + "\n" + uid + "\t\t" + 
-                    "NAME: " + "\n" + fName + " " + lName + "\t\t" + 
-                    "AGE: " + "\n" + age + "\t\t" + 
-                    "CONTACT NUMBER: " + "\n" + contactNum + "\t\t" + 
-                    "TREATMENT: " + "\n" + treatment);
-            
-            System.out.println();
-            System.out.println("Appointment booked for: " + fName + " " + lName);
-            System.out.println("UID: #" + uid);
-            System.out.println("Treatment: " + treatment);
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-            //return main;
-        }
+    try (FileWriter fw = new FileWriter(fileName)) {
+        fw.write("USERNAME: " + "\n" + patient.getUName() + "\t\t" +
+                "NAME: " + "\n" + patient.getName() + "\t\t" +
+                "BIRTHDAY: " + "\n" + patient.getbirthDay() + "\t\t" +
+                "CONTACT NUMBER: " + "\n" + patient.getconNumber() + "\t\t" +
+                "TREATMENT: " + "\n" + treatment);
+
+        System.out.println();
+        System.out.println("Appointment booked for: " + patient.getName());
+        System.out.println("Username: " + patient.getUName());
+        System.out.println("Treatment: " + treatment);
+    } catch (IOException e) {
+        System.out.println("Error writing to file: " + e.getMessage());
     }
+}
     
     static void openAppointment(Scanner scan) {
         System.out.println("\nOPEN EXISTING APPOINTMENT:");
@@ -115,5 +111,35 @@ public class Appointment{
             default:
                 return "Unknown Treatment";
         }
+    }
+}
+class Cleaning extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Cleaning...");
+        System.out.println();
+    }
+}
+class CheckUp extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAdditional process: Check-Up");
+        System.out.println();
+    }
+}
+class Fillings extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Fillings...");
+        System.out.println();
+    }
+}
+class RootCanal extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: RootCanal...");
+        System.out.println();
+    }
+}
+class Extraction extends Appointment {
+    public void performAppointment() {
+        System.out.println("\tAppointment chosen: Extraction...");
+        System.out.println();
     }
 }
