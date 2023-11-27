@@ -1,6 +1,7 @@
 package com.troykingdom.smileykeb.smileykeb;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 public class SmileyKeb {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -33,7 +34,6 @@ public class SmileyKeb {
                 menu(scan);
                 break;
         }
-        
     }
     
     public static void Login(Scanner scan){
@@ -71,13 +71,36 @@ public class SmileyKeb {
         
         System.out.print("Enter your BirthYear: ");
         newPat.setbirthYear(scan.nextInt());
-        newPat.setUName();
-        System.out.println("Your username is " + newPat.getUName() + "\n");
         
-        newPat.savePatientDetails();
-        newPat.saveUserName();
-        menu(scan);
+        if (checkUNameDuplicate(newPat.getUName())) {
+            System.out.println("Username already exists. Please choose another clinic :D"); // di ko alam irreturn haha
+            signUp(scan);
+        } else {
+            newPat.setUName();
+            System.out.println("Your username is " + newPat.getUName() + "\n");
+            newPat.savePatientDetails();
+            newPat.saveUserName();
+            menu(scan);
+        }
     }
+    
+    private static boolean checkUNameDuplicate(String username) {
+    try {
+        File file = new File("UserName/usernames.txt");
+        Scanner scan = new Scanner(file);
+
+        while (scan.hasNextLine()) {
+            String line = scan.nextLine();
+            if (line.equals(username)) {
+                return true; // username already exists
+            }
+        }
+        scan.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("Error checking username duplicates: " + e.getMessage());
+    }
+    return false; // username does not exist
+}
     
     public static void Appointment(Scanner scan){
             Appointment apt = new Appointment();
@@ -113,4 +136,3 @@ public class SmileyKeb {
             }
     }
 }
-
