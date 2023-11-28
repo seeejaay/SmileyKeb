@@ -58,7 +58,7 @@ public class SmileyKeb {
     public static void Login(Scanner scan){
         String uName;
         
-        System.out.println("Hint: First letter of lastname and birthyear");
+        System.out.println("Hint: First letter of firstname, lastname and birthyear");
         System.out.print("Enter your username: ");
         uName = scan.nextLine();
         File file = new File("PatientInfo/"+uName + ".txt");

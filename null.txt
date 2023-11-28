@@ -1,0 +1,6 @@
+USERNAME: 
+null		NAME: 
+null null		BIRTHDAY: 
+null 0 0		CONTACT NUMBER: 
+0		TREATMENT: 
+Cleaning
