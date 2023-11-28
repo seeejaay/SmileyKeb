@@ -16,6 +16,8 @@ public class Appointment{
     
     public void bookAppointment(Scanner scan){
         Calendar cd = new Calendar();
+        String choice;
+        do{
         System.out.println("\nTREATMENTS AVAILABLE:");
         System.out.println("[1] Check-up");
         System.out.println("[2] Cleaning");
@@ -28,8 +30,8 @@ public class Appointment{
         System.out.print("Enter treatment choice: ");
         int treatmentChoice = scan.nextInt();
         scan.nextLine();
-        String choice;
-        do{
+        
+        
         
             switch(treatmentChoice){
                 case 1:
@@ -60,12 +62,12 @@ public class Appointment{
                     bookAppointment(scan);
                     break;
             }
-            System.out.print("Return to Main Menu?[Y/N]:");
+            System.out.print("Return to Menu?[Y/N]:");
             choice = scan.nextLine();
             
             choice = choice.toUpperCase();
         }while("N".equals(choice) || "NO".equals(choice));
-        menu(scan);
+           menu(scan);
     }
     
     public void savePatientHistory(String treatment){
