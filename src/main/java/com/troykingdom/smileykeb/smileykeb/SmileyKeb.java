@@ -119,6 +119,7 @@ public class SmileyKeb {
     }
     public static void Appointment(Scanner scan){
         Appointment apt = new Appointment();
+        Patient pat = new Patient();
         System.out.println("\n------------MENU------------");
         System.out.println("[1] Book Appointment");
         System.out.println("[2] Open Existing Appointment");
@@ -136,7 +137,7 @@ public class SmileyKeb {
                 apt.bookAppointment(scan);
                 break;
             case 2:
-               // apt.openAppointment(scan);
+               apt.openHistory(scan);
                 break;
             case 3:
                 //apt.cancelAppointment(scan);

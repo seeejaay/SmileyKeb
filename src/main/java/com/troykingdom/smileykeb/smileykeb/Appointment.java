@@ -1,10 +1,12 @@
 package com.troykingdom.smileykeb.smileykeb;
 import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.menu;
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Appointment{
     
@@ -85,6 +87,34 @@ public class Appointment{
         }
     }
     
+    public void openHistory(Scanner scan){
+        FileReader fr = null;
+        try {
+            String uName;
+            System.out.print("Enter Username: ");
+            uName = scan.nextLine();
+            String filepath = "PatientHistory/" + uName + ".txt";
+            fr = new FileReader(filepath);
+            Scanner scanner = new Scanner(fr);
+            StringBuilder content = new StringBuilder();
+            // Read each line of the file and append it to the content
+            while (scanner.hasNextLine()) {
+                content.append(scanner.nextLine()).append("\n");
+            }   scanner.close();
+            System.out.println(content.toString());
+        } catch (FileNotFoundException e) {
+            System.out.println("Error Occured: " + e.getMessage() );
+        } finally {
+            try {
+                fr.close();
+            } catch (IOException e) {
+                 System.out.println("Error Occured: " + e.getMessage() );
+            }
+        }
+    }
+ }
+   
+
 //    static String bookAppointment(Scanner scan) {
 //        System.out.println("\nTREATMENTS AVAILABLE:");
 //        System.out.println("[1] Check-up");
@@ -192,4 +222,3 @@ public class Appointment{
 //                return "Unknown Treatment";
 //        }
 //    }
-}
