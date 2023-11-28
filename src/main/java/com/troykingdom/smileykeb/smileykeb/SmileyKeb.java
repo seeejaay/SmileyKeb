@@ -25,6 +25,7 @@ public class SmileyKeb {
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
                 System.out.println("[3] Exit");
+                System.out.println("----------------------------");
                 System.out.print("Enter Choice: ");
                 inp = scan.nextInt();
                 scan.nextLine();

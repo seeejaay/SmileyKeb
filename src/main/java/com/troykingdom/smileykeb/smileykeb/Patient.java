@@ -94,7 +94,6 @@ public class Patient {
             }catch (IOException e){
                 System.out.println("Error saving patient details: " + e.getMessage());   
             }
-        
     }
     
     public void saveContactNum(){
@@ -162,5 +161,4 @@ public class Patient {
         }
         return false; // username does not exist
     }
-
 }
