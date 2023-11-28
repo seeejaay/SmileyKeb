@@ -86,7 +86,7 @@ public class Patient {
     }
     public void saveName(){
         try{
-                String filepath = "PatientInfo/name" +  ".txt";
+                String filepath = "PatientInfo/names" +  ".txt";
                 try(FileWriter fw = new FileWriter(filepath,true)){
                     fw.write(getName() + "\n" );
                     fw.close();
