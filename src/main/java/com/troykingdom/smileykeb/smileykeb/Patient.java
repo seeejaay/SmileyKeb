@@ -115,7 +115,6 @@ public class Patient {
             String filepath = "PatientInfo/birthday" +".txt";
             try(FileWriter fw = new FileWriter(filepath,true)){
                 fw.write(getbirthDay() + "\n" );
-                saveUserName();
                 fw.close();
             }
         }catch (IOException e){
