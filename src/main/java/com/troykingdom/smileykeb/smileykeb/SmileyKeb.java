@@ -25,9 +25,10 @@ public class SmileyKeb {
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
                 System.out.println("[3] Exit");
-                System.out.print("Choice: ");
+                System.out.print("Enter Choice: ");
                 inp = scan.nextInt();
                 scan.nextLine();
+                System.out.println("----------------------------");
 
                 switch(inp){
                     case 1: 
@@ -58,7 +59,7 @@ public class SmileyKeb {
     public static void Login(Scanner scan){
         String uName;
         Patient newPat = new Patient();
-        System.out.println("Hint: First letter of firstname, lastname and birthyear");
+        System.out.println("Hint: First letter of firstname, lastname and birthyear (ex: LPalma2007)");
         System.out.print("Enter your username: ");
         uName = scan.nextLine();
         File file = new File("PatientInfo/"+uName + ".txt");
@@ -98,7 +99,7 @@ public class SmileyKeb {
             newPat.setUName();//fixed calling of setUName, becaues it was unreachable
             FileCreation.createFiles();
             if (Patient.checkUNameDuplicate(newPat.getUName())) {
-                System.out.println("Username already exists. Please call the clinic."); // di ko alam irreturn haha
+                System.out.println("Username already exists. Please call the clinic."); 
                 menu(scan);
             } else {
                 //former location of setUName
