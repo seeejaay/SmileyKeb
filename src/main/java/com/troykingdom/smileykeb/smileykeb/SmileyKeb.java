@@ -25,11 +25,9 @@ public class SmileyKeb {
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
                 System.out.println("[3] Exit");
-                System.out.println("----------------------------");
-                System.out.print("Enter Choice: ");
+                System.out.print("Choice: ");
                 inp = scan.nextInt();
                 scan.nextLine();
-                System.out.println("----------------------------");
 
                 switch(inp){
                     case 1: 
@@ -59,13 +57,14 @@ public class SmileyKeb {
     
     public static void Login(Scanner scan){
         String uName;
-        
-        System.out.println("Hint: First letter of firstname, lastname and birthyear {ex: LPalma2007)");
+        Patient newPat = new Patient();
+        System.out.println("Hint: First letter of firstname, lastname and birthyear");
         System.out.print("Enter your username: ");
         uName = scan.nextLine();
         File file = new File("PatientInfo/"+uName + ".txt");
         if (file.exists()) {
             System.out.println("Login Successful!");
+            newPat.setUName(uName);
             Appointment(scan);
             // You can read the file to get patient details if needed
         } else {
@@ -98,7 +97,7 @@ public class SmileyKeb {
             newPat.setUName();//fixed calling of setUName, becaues it was unreachable
             FileCreation.createFiles();
             if (Patient.checkUNameDuplicate(newPat.getUName())) {
-                System.out.println("Username already exists. Please call the clinic.");
+                System.out.println("Username already exists. Please call the clinic."); // di ko alam irreturn haha
                 menu(scan);
             } else {
                 //former location of setUName
@@ -131,10 +130,10 @@ public class SmileyKeb {
                 apt.bookAppointment(scan);
                 break;
             case 2:
-                apt.openAppointment(scan);
+               // apt.openAppointment(scan);
                 break;
             case 3:
-                apt.cancelAppointment(scan);
+                //apt.cancelAppointment(scan);
                 break;
             case 4:
                 System.exit(0);

@@ -58,6 +58,10 @@ public class Patient {
         this.uName = userName;
     }
     
+    public void setUName(String userName){
+        this.uName = userName;
+    }
+    
     public String getUName(){
         return uName;
     }

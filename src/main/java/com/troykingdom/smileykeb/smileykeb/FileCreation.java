@@ -18,6 +18,8 @@ public class FileCreation {
             }
             File file1 = new File(dir1, "usernames.txt");
             file1.createNewFile();
+            
+            
         }catch(IOException e){
         }
         
