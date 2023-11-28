@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Appointment{
+    
     Treatment trCh = new CheckUp();
     Treatment trCl = new Cleaning();
     Treatment trEx = new Extraction();
