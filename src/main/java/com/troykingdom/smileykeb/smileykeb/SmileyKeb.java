@@ -98,7 +98,7 @@ public class SmileyKeb {
             newPat.setUName();//fixed calling of setUName, becaues it was unreachable
             FileCreation.createFiles();
             if (Patient.checkUNameDuplicate(newPat.getUName())) {
-                System.out.println("Username already exists. Please call the clinic."); // di ko alam irreturn haha
+                System.out.println("Username already exists. Please call the clinic.");
                 menu(scan);
             } else {
                 //former location of setUName
