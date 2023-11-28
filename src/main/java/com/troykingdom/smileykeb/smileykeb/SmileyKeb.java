@@ -1,15 +1,14 @@
 package com.troykingdom.smileykeb.smileykeb;
-
 import java.util.Scanner;
 import java.io.File;
 import java.util.InputMismatchException;
 
+// @author Malabanan, Palma, Bay, Vinas
+
 public class SmileyKeb {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-            
             menu(scan);
-        
     }
     
     public static void menu(Scanner scan){
@@ -18,7 +17,6 @@ public class SmileyKeb {
         
         while(!validInput){
             try{
-
                 System.out.println("Welcome to SmileyKeb Dental Clinic\n");
 
                 System.out.println("------------MENU------------");
@@ -49,7 +47,7 @@ public class SmileyKeb {
                         break;
                 }
 
-            }catch(Exception e){
+            } catch(Exception e){
                 System.out.println("Error Occured: " + e.getMessage());
                 scan.nextLine();
                 menu(scan);
@@ -68,12 +66,11 @@ public class SmileyKeb {
             System.out.println("Login Successful!");
             newPat.setUName(uName);
             Appointment(scan);
-            // You can read the file to get patient details if needed
+            // you can read the file to get patient details if needed
         } else {
             System.out.println("Username not found. Please sign up.");
             menu(scan);
         }
-        
     }
     
     public static void signUp(Scanner scan){
@@ -95,18 +92,19 @@ public class SmileyKeb {
 
             System.out.print("Enter your BirthYear: ");
             newPat.setbirthYear(scan.nextInt());
-            // add setcontactNum
             
             System.out.print("Enter your Contact #: ");
             newPat.setcontactNum(scan.nextInt());
             scan.nextLine();
-            newPat.setUName();//fixed calling of setUName, becaues it was unreachable
+            
+            newPat.setUName();
             FileCreation.createFiles();
+            
             if (Patient.checkUNameDuplicate(newPat.getUName())) {
                 System.out.println("Username already exists. Please call the clinic."); 
                 menu(scan);
             } else {
-                //former location of setUName
+                // former location of setUName
                 System.out.println("Your username is " + newPat.getUName() + "\n");
                 newPat.savePatientDetails();
                 menu(scan);
@@ -119,7 +117,6 @@ public class SmileyKeb {
     }
     public static void Appointment(Scanner scan){
         Appointment apt = new Appointment();
-        Patient pat = new Patient();
         System.out.println("\n------------MENU------------");
         System.out.println("[1] Book Appointment");
         System.out.println("[2] Open Existing Appointment");
@@ -148,9 +145,6 @@ public class SmileyKeb {
             default:
                 System.out.println("Invalid Choice. Kindly enter again.");
                 Appointment(scan);
-
         }
     }
-    
-    
 }

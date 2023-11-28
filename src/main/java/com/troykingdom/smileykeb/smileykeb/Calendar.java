@@ -1,21 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.troykingdom.smileykeb.smileykeb;
-
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author PC
- */
+// @author Malabanan, Palma, Bay, Vinas
+ 
 public class Calendar {
-    private String[] dateStatus = new String[30];
+    private final String[] dateStatus = new String[30];
     
         public Calendar() {
         for (int i = 0; i < dateStatus.length; i++) {
@@ -41,7 +33,6 @@ public class Calendar {
                 } else {
                     content.append("\t");
                 }
-
                 i++;
             }
             
