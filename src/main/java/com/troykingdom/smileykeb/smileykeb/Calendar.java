@@ -26,29 +26,34 @@ public class Calendar {
         Scanner sc = new Scanner(System.in);
 
         try {
-            FileReader fr = new FileReader("Calendar.txt");
+           FileReader fr = new FileReader("Calendar.txt");
             Scanner scan = new Scanner(fr);
 
             StringBuilder content = new StringBuilder();
 
-            for (int i = 0; scan.hasNextLine(); i++) {
-                content.append(scan.nextLine());
-                if ((i + 1) % 7 == 0) {
-                    content.append("\n"); 
-                } else {
-                    content.append("\t"); 
-                }
-            }
+            int i = 0;
+            while (scan.hasNextLine()) {
+                dateStatus[i] = scan.nextLine();
+                content.append(dateStatus[i]);
 
+                if ((i + 1) % 7 == 0) {
+                    content.append("\n");
+                } else {
+                    content.append("\t");
+                }
+
+                i++;
+            }
+            
             System.out.println("Current Calendar:");
             System.out.println(content.toString());
 
             // user input for date to mark as occupied
             System.out.print("\nInsert Date to mark as 'OC': ");
             String dateIn = sc.nextLine();
-
+            
             boolean alreadyOccupied = false;
-            for (int i = 0; i < dateStatus.length; i++) {
+            for ( i = 0; i < dateStatus.length; i++) {
                 if (dateStatus[i].equals(dateIn) && dateStatus[i].equals("OC")) {
                     alreadyOccupied = true;
                     break;
@@ -57,7 +62,7 @@ public class Calendar {
 
             // update the calendar based on user input
             if (!alreadyOccupied) {
-                for (int i = 0; i < dateStatus.length; i++) {
+                for (i = 0; i < dateStatus.length; i++) {
                     if (dateStatus[i].equals(dateIn)) {
                         dateStatus[i] = "OC"; 
                         System.out.println("Date selected: " + dateIn + " marked as 'OC'.");
@@ -69,7 +74,7 @@ public class Calendar {
 
             // write the updated data back to the file
             try (FileWriter fw = new FileWriter("Calendar.txt")) {
-                for (int i = 0; i < dateStatus.length; i++) {
+                for ( i = 0; i < dateStatus.length; i++) {
                     fw.write(dateStatus[i] + "\n"); 
                 }
             } catch (IOException e) {

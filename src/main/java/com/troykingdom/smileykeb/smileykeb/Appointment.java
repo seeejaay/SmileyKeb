@@ -55,7 +55,7 @@ public class Appointment{
                     trEx.performAppointment();
                     break;
                 case 6:
-                    cd.selectDate();
+                    
                     SmileyKeb.menu(scan);
                     break;
                 default:
