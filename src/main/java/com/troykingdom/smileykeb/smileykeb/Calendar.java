@@ -27,12 +27,12 @@ public class Calendar {
 
         try {
             FileReader fr = new FileReader("Calendar.txt");
-            Scanner sca = new Scanner(fr);
+            Scanner scan = new Scanner(fr);
 
             StringBuilder content = new StringBuilder();
 
-            for (int i = 0; sca.hasNextLine(); i++) {
-                content.append(sca.nextLine());
+            for (int i = 0; scan.hasNextLine(); i++) {
+                content.append(scan.nextLine());
                 if ((i + 1) % 7 == 0) {
                     content.append("\n"); 
                 } else {
@@ -76,7 +76,7 @@ public class Calendar {
                 System.out.println("Error writing to file: " + e.getMessage());
             }
 
-            sc.close();
+            scan.close();
         } catch (IOException e) {
             System.out.println("Error Occurred: " + e.getMessage());
         }
