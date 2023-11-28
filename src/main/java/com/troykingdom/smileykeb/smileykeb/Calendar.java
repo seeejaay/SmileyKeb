@@ -59,7 +59,7 @@ public class Calendar {
             if (!alreadyOccupied) {
                 for (int i = 0; i < dateStatus.length; i++) {
                     if (dateStatus[i].equals(dateIn)) {
-                        dateStatus[i] = "OC"; // Mark as occupied
+                        dateStatus[i] = "OC"; 
                         System.out.println("Date selected: " + dateIn + " marked as 'OC'.");
                     }
                 }
@@ -70,7 +70,7 @@ public class Calendar {
             // write the updated data back to the file
             try (FileWriter fw = new FileWriter("Calendar.txt")) {
                 for (int i = 0; i < dateStatus.length; i++) {
-                    fw.write(dateStatus[i] + "\n"); // Add a newline after each date
+                    fw.write(dateStatus[i] + "\n"); 
                 }
             } catch (IOException e) {
                 System.out.println("Error writing to file: " + e.getMessage());
