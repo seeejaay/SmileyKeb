@@ -1,4 +1,5 @@
 package com.troykingdom.smileykeb.smileykeb;
+import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.Appointment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.io.IOException;
 
 public class Appointment{
     
-    static String bookAppointment(Scanner scan) {
+    static void bookAppointment(Scanner scan) {
         System.out.println("\nTREATMENTS AVAILABLE:");
         System.out.println("[1] Check-up");
         System.out.println("[2] Cleaning");
@@ -22,6 +23,11 @@ public class Appointment{
         scan.nextLine();
         
         String treatment = getTreatmentName(treatmentChoice);
+        
+        if (treatmentChoice == 6){
+            System.out.println("Returning to menu...");
+            Appointment(scan);
+        }
         
         switch (treatmentChoice) {
             case 1:
@@ -45,7 +51,6 @@ public class Appointment{
         // date class 
         Patient patient = new Patient();
         savePatientInfo(patient, treatment);
-        return null;
     }
     
     private static void savePatientInfo(Patient patient, String treatment) {
@@ -69,30 +74,33 @@ public class Appointment{
     
     static void openAppointment(Scanner scan) {
         System.out.println("\nOPEN EXISTING APPOINTMENT:");
-        System.out.print("Enter UID: ");
-        int apptID = scan.nextInt();
+        System.out.println("Hint: First letter of firstname, lastname and birthyear {ex: LPalma2007)");
+        System.out.print("Enter username: ");
+        String username = scan.nextLine();
 
-        String fileName = "Patient #" + apptID + ".txt";
+        String folderPath = "PatientHistory";
+        String fileName = folderPath + "/" + username + ".txt";
 
         try {
             Scanner fileScanner = new Scanner(new File(fileName));
             if (fileScanner.hasNextLine()) {
                 String[] data = fileScanner.nextLine().split("\t");
 
-                System.out.println("\nPatient #" + apptID + " Information");
+                System.out.println("\nPatient " + username + " Information");
                 for (String item : data) {
-                System.out.println(item);
-            }
+                    System.out.println(item);
+                }
             } else {
-                System.out.println("No patient information found for appointment ID: " + apptID);
+                System.out.println("No patient information found for username: " + username);
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
         }
-    }
+}
     
     static void cancelAppointment(Scanner scan) {
         System.out.println("\nCANCEL APPOINTMENT:");
+        System.out.println("Hint: First letter of firstname, lastname and birthyear {ex: LPalma2007)");
         System.out.print("Enter username to cancel: ");
         String username = scan.nextLine();
 
