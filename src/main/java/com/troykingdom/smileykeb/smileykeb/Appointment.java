@@ -1,4 +1,5 @@
 package com.troykingdom.smileykeb.smileykeb;
+import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.menu;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ public class Appointment{
     Treatment trRc = new RootCanal();
     
     public void bookAppointment(Scanner scan){
-        
+        Calendar cd = new Calendar();
         System.out.println("\nTREATMENTS AVAILABLE:");
         System.out.println("[1] Check-up");
         System.out.println("[2] Cleaning");
@@ -25,33 +26,46 @@ public class Appointment{
         System.out.println("----------------------------");
         
         System.out.print("Enter treatment choice: ");
-        
         int treatmentChoice = scan.nextInt();
         scan.nextLine();
+        String choice;
+        do{
         
-        switch(treatmentChoice){
-            case 1:
-                trCh.performAppointment();
-                break;
-            case 2:
-                trCl.performAppointment();
-                break;
-            case 3:
-                trFi.performAppointment();
-                break;
-            case 4: 
-                trRc.performAppointment();
-                break;
-            case 5:
-                trEx.performAppointment();
-                break;
-            case 6:
-                SmileyKeb.menu(scan);
-                break;
-            default:
-                bookAppointment(scan);
-                break;
-        }
+            switch(treatmentChoice){
+                case 1:
+                    cd.selectDate();
+                    trCh.performAppointment();
+                    break;
+                case 2:
+                    cd.selectDate();
+                    trCl.performAppointment();
+                    break;
+                case 3:
+                    cd.selectDate();
+                    trFi.performAppointment();
+                    break;
+                case 4: 
+                    cd.selectDate();
+                    trRc.performAppointment();
+                    break;
+                case 5:
+                    cd.selectDate();
+                    trEx.performAppointment();
+                    break;
+                case 6:
+                    cd.selectDate();
+                    SmileyKeb.menu(scan);
+                    break;
+                default:
+                    bookAppointment(scan);
+                    break;
+            }
+            System.out.print("Return to Main Menu?[Y/N]:");
+            choice = scan.nextLine();
+            
+            choice = choice.toUpperCase();
+        }while("N".equals(choice) || "NO".equals(choice));
+        menu(scan);
     }
     
     public void savePatientHistory(String treatment){
