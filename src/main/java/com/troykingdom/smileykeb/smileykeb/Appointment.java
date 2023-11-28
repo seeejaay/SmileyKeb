@@ -91,7 +91,26 @@ public class Appointment{
         }
     }
     
-    //add break sequence
+    static void cancelAppointment(Scanner scan) {
+        System.out.println("\nCANCEL APPOINTMENT:");
+        System.out.print("Enter username to cancel: ");
+        String username = scan.nextLine();
+
+        String folderPath = "PatientHistory/" + username;
+        String fileName = folderPath + "/" + username + ".txt";
+
+        File file = new File(fileName);
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Appointment for user: " + username + " has been canceled.");
+            } else {
+                System.out.println("Failed to cancel the appointment. Please try again.");
+            }
+        } else {
+            System.out.println("No appointment found for username: " + username);
+        }
+    }
+    
     private static String getTreatmentName(int choice) {
         switch (choice) {
             case 1:

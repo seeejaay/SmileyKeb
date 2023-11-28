@@ -25,9 +25,11 @@ public class SmileyKeb {
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
                 System.out.println("[3] Exit");
-                System.out.print("Choice: ");
+                System.out.println("----------------------------");
+                System.out.print("Enter Choice: ");
                 inp = scan.nextInt();
                 scan.nextLine();
+                System.out.println("----------------------------");
 
                 switch(inp){
                     case 1: 
@@ -132,7 +134,7 @@ public class SmileyKeb {
                 apt.openAppointment(scan);
                 break;
             case 3:
-                //apt.cancelAppointment(scan);
+                apt.cancelAppointment(scan);
                 break;
             case 4:
                 System.exit(0);
