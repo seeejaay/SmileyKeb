@@ -67,6 +67,7 @@ public class Appointment{
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
+    }
     
 //    static String bookAppointment(Scanner scan) {
 //        System.out.println("\nTREATMENTS AVAILABLE:");
