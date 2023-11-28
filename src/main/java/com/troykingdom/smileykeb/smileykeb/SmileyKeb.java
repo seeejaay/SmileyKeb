@@ -95,6 +95,9 @@ public class SmileyKeb {
             System.out.print("Enter your BirthYear: ");
             newPat.setbirthYear(scan.nextInt());
             // add setcontactNum
+            
+            System.out.print("Enter your Contact #: ");
+            newPat.setcontactNum(scan.nextInt());
             scan.nextLine();
             newPat.setUName();//fixed calling of setUName, becaues it was unreachable
             FileCreation.createFiles();

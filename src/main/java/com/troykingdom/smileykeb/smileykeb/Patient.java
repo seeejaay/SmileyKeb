@@ -18,6 +18,8 @@ public class Patient {
     private int birthyear;
     private int contactNumber;
     private String uName;
+   
+    
     public void setFName(String fName){
         this.firstName = fName;
     }
@@ -43,7 +45,7 @@ public class Patient {
     }
     
     public String getbirthDay(){
-        String bday = birthMonth + " " + birthDay+ " " + birthyear; 
+        String bday = birthMonth + "/" + birthDay+ "/" + birthyear; 
         return bday;
     }
     
@@ -62,23 +64,63 @@ public class Patient {
         this.uName = userName;
     }
     
+    public void setcontactNum(int contactNumber ){
+        this.contactNumber = contactNumber;
+    }
+    
+    public int getcontactNum(){
+        return contactNumber;
+    }
+    
     public String getUName(){
         return uName;
     }
     
     public void savePatientDetails() {
-        
+        saveName();
+        saveContactNum();
+        saveBirthDay();
+        saveUserName();
+        createUserFile();
+        System.out.println("Patient details saved to file");
+    }
+    public void saveName(){
         try{
-            String filepath = "PatientHistory/" + getUName() + ".txt";
-            try(FileWriter fw = new FileWriter(filepath)){
-                fw.write(getUName() + "\t" + getName() + "\t" + getbirthDay());
+                String filepath = "PatientInfo/name" +  ".txt";
+                try(FileWriter fw = new FileWriter(filepath,true)){
+                    fw.write(getName() + "\n" );
+                    fw.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error saving patient details: " + e.getMessage());   
+            }
+        
+    }
+    
+    public void saveContactNum(){
+    try{
+                String filepath = "PatientInfo/contactnumber" +".txt";
+                try(FileWriter fw = new FileWriter(filepath,true)){
+                    fw.write(getcontactNum() + "\n" );
+                    fw.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error saving patient details: " + e.getMessage());   
+            }
+        
+    }
+    
+    public void saveBirthDay(){
+         try{
+            String filepath = "PatientInfo/birthday" +".txt";
+            try(FileWriter fw = new FileWriter(filepath,true)){
+                fw.write(getbirthDay() + "\n" );
                 saveUserName();
-                System.out.println("Patient details saved to file");
+                fw.close();
             }
         }catch (IOException e){
             System.out.println("Error saving patient details: " + e.getMessage());   
         }
-        
     }
     
     public void saveUserName(){
@@ -87,11 +129,20 @@ public class Patient {
             String filepath = "PatientInfo/usernames.txt";
             try (FileWriter fw = new FileWriter(filepath, true)) {
                 fw.write(getUName() + "\n");
-                System.out.println("Username stored successfully.");
                 fw.close();
             }
         } catch (IOException e) {
             System.out.println("Error storing Username: " + e.getMessage());
+        }
+    }
+    
+    public void createUserFile(){
+        try{
+            String filepath = "PatientHistory/" + getUName() + ".txt";
+            File file = new File(filepath);
+            file.createNewFile();
+        }catch (IOException e){
+            System.out.println("Error creating File: " + e.getMessage());
         }
     }
     
