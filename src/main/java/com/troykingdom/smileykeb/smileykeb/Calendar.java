@@ -15,21 +15,17 @@ import java.util.Scanner;
  * @author PC
  */
 public class Calendar {
-    private String date[] = new String[30];
+    private String[] dateStatus = new String[30];
+    
+        public Calendar() {
+        for (int i = 0; i < dateStatus.length; i++) {
+            dateStatus[i] = String.valueOf(i + 1); 
+        }
+    }
          public void selectDate() {
         Scanner sc = new Scanner(System.in);
 
         try {
-            // Write data to the Calendar.txt file
-            FileWriter fw = new FileWriter("Calendar.txt");
-            for (int i = 0; i < date.length; i++) {
-                date[i] = String.valueOf(i + 1);
-                fw.write(date[i] + "\n");
-                // Add a newline after each date
-            }
-            fw.close(); // Close the FileWriter after writing all elements to the file
-
-            // Read data from the Calendar.txt file and print it out with a newline every 7 numbers
             FileReader fr = new FileReader("Calendar.txt");
             Scanner sca = new Scanner(fr);
 
@@ -38,33 +34,32 @@ public class Calendar {
             for (int i = 0; sca.hasNextLine(); i++) {
                 content.append(sca.nextLine());
                 if ((i + 1) % 7 == 0) {
-                    content.append("\n"); // Add a newline after every 7 numbers
+                    content.append("\n"); 
                 } else {
-                    content.append("\t"); // Add a tab between numbers
+                    content.append("\t"); 
                 }
             }
 
             System.out.println("Current Calendar:");
             System.out.println(content.toString());
 
-            // Get user input for the date to mark as occupied
+            // user input for date to mark as occupied
             System.out.print("\nInsert Date to mark as 'OC': ");
             String dateIn = sc.nextLine();
 
-            // Check if the selected date is already marked as 'OC'
             boolean alreadyOccupied = false;
-            for (int i = 0; i < date.length; i++) {
-                if (date[i].equals(dateIn) && date[i].equals("OC")) {
+            for (int i = 0; i < dateStatus.length; i++) {
+                if (dateStatus[i].equals(dateIn) && dateStatus[i].equals("OC")) {
                     alreadyOccupied = true;
                     break;
                 }
             }
 
-            // Update the calendar based on user input
+            // update the calendar based on user input
             if (!alreadyOccupied) {
-                for (int i = 0; i < date.length; i++) {
-                    if (date[i].equals(dateIn)) {
-                        date[i] = "OC"; // Mark as occupied
+                for (int i = 0; i < dateStatus.length; i++) {
+                    if (dateStatus[i].equals(dateIn)) {
+                        dateStatus[i] = "OC"; // Mark as occupied
                         System.out.println("Date selected: " + dateIn + " marked as 'OC'.");
                     }
                 }
@@ -72,14 +67,16 @@ public class Calendar {
                 System.out.println("Date " + dateIn + " is already marked as 'OC'.");
             }
 
-            // Write the updated data back to the file
-            fw = new FileWriter("Calendar.txt");
-            for (int i = 0; i < date.length; i++) {
-                fw.write(date[i] + "\n"); // Add a newline after each date
+            // write the updated data back to the file
+            try (FileWriter fw = new FileWriter("Calendar.txt")) {
+                for (int i = 0; i < dateStatus.length; i++) {
+                    fw.write(dateStatus[i] + "\n"); // Add a newline after each date
+                }
+            } catch (IOException e) {
+                System.out.println("Error writing to file: " + e.getMessage());
             }
-            fw.close(); // Close the FileWriter after writing all elements to the file
 
-            sca.close(); // Close the Scanner for reading the file
+            sc.close();
         } catch (IOException e) {
             System.out.println("Error Occurred: " + e.getMessage());
         }
