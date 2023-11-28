@@ -69,7 +69,7 @@ public class Patient {
     public void savePatientDetails() {
         
         try{
-            String filepath = "PatientInfo/" + getUName() + ".txt";
+            String filepath = "PatientHistory/" + getUName() + ".txt";
             try(FileWriter fw = new FileWriter(filepath)){
                 fw.write(getUName() + "\t" + getName() + "\t" + getbirthDay());
                 saveUserName();
@@ -84,7 +84,7 @@ public class Patient {
     public void saveUserName(){
         
         try {
-            String filepath = "Username/usernames.txt";
+            String filepath = "PatientInfo/usernames.txt";
             try (FileWriter fw = new FileWriter(filepath, true)) {
                 fw.write(getUName() + "\n");
                 System.out.println("Username stored successfully.");
@@ -97,7 +97,7 @@ public class Patient {
     
     public static boolean checkUNameDuplicate(String username) {
         try {
-            File file = new File("UserName/usernames.txt");
+            File file = new File("PatientInfo/usernames.txt");
             try (Scanner scan = new Scanner(file)) {
                 while (scan.hasNextLine()) {
                     String line = scan.nextLine();
