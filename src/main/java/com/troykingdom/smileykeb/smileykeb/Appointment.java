@@ -12,6 +12,7 @@ public class Appointment{
     Treatment trEx = new Extraction();
     Treatment trFi = new Fillings();
     Treatment trRc = new RootCanal();
+    
     public void bookAppointment(Scanner scan){
         
         System.out.println("\nTREATMENTS AVAILABLE:");
@@ -51,30 +52,21 @@ public class Appointment{
                 bookAppointment(scan);
                 break;
         }
-    
-        
     }
     
-//    public void savePatientInfo(String treatment){
-//        Patient newPat = new Patient();
-//        String fileName = newPat.getUName() + ".txt";
-//
-//    try (FileWriter fw = new FileWriter(fileName)) {
-//        fw.write(newPat.getUName() + "\t" + newPat.getName() + "\t" + );
-//    }
-////        fw.write("USERNAME: " + "\n" + newPat.getUName() + "\t\t" +
-////                "NAME: " + "\n" + newPat.getName() + "\t\t" +
-////                "BIRTHDAY: " + "\n" + newPat.getbirthDay() + "\t\t" +
-////                "CONTACT NUMBER: " + "\n" + newPat.getconNumber() + "\t\t" +
-////                "TREATMENT: " + "\n" + treatment);
-//
-//        System.out.println();
-//        System.out.println("Appointment booked for: " + newPat.getName());
-//        System.out.println("Username: " + newPat.getUName());
-//        System.out.println("Treatment: " + treatment);
-//    } catch (IOException e) {
-//        System.out.println("Error writing to file: " + e.getMessage());
-//    }
+    public void savePatientHistory(String treatment){
+            Patient newPat = new Patient();
+            String fileName = "PatientHistory/" + newPat.getUName() + ".txt";
+
+        try (FileWriter fw = new FileWriter(fileName)){
+            fw.write("TREATMENT TYPE: " + treatment);
+            System.out.println();
+            System.out.println("Appointment booked for: " + newPat.getName());
+            System.out.println("Username: " + newPat.getUName());
+            System.out.println("Treatment: " + treatment);
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
     
 //    static String bookAppointment(Scanner scan) {
 //        System.out.println("\nTREATMENTS AVAILABLE:");
