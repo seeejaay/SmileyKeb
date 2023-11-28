@@ -1,8 +1,15 @@
 package com.troykingdom.smileykeb.smileykeb;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+/*
+*   author Bay,Malabanan,Palma,Vinas
+*/
+
 public class Patient {
     private String firstName;
     private String lastName;
@@ -11,7 +18,6 @@ public class Patient {
     private int birthyear;
     private int contactNumber;
     private String uName;
-    private Scanner scan;
     public void setFName(String fName){
         this.firstName = fName;
     }
@@ -57,35 +63,50 @@ public class Patient {
     }
     
     public void savePatientDetails() {
-        String filePath = "PatientInfo/" + uName + ".txt";
-
-        try {
-            File file = new File(filePath);
-
-            if (file.exists()){//checks if the file already exists 
-                System.out.println("Patient file already exists. Cannot overwrite.");
-                return;  // Return without saving if the file already exists
-            }
-            try (FileWriter fw = new FileWriter(filePath)) {
+        
+        try{
+            String filepath = "PatientInfo/" + getUName() + ".txt";
+            try(FileWriter fw = new FileWriter(filepath)){
                 fw.write(getUName() + "\t" + getName() + "\t" + getbirthDay());
-                // Add more details as needed
-                System.out.println("Patient details saved to file.");
+                saveUserName();
+                System.out.println("Patient details saved to file");
             }
-        } catch (IOException e) {
-            System.out.println("Error saving patient details: " + e.getMessage());
+        }catch (IOException e){
+            System.out.println("Error saving patient details: " + e.getMessage());   
         }
+        
     }
     
     public void saveUserName(){
+        
         try {
-           FileWriter fw = new FileWriter("UserName/usernames.txt",true);
-           fw.write(getUName() + "\n");
-           fw.close();
-        }catch(IOException e){
-            System.out.println("Error Storing UserName" + e);
+            String filepath = "Username/usernames.txt";
+            try (FileWriter fw = new FileWriter(filepath, true)) {
+                fw.write(getUName() + "\n");
+                System.out.println("Username stored successfully.");
+                fw.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error storing Username: " + e.getMessage());
         }
     }
     
-    
-    
+    public static boolean checkUNameDuplicate(String username) {
+        try {
+            File file = new File("UserName/usernames.txt");
+            try (Scanner scan = new Scanner(file)) {
+                while (scan.hasNextLine()) {
+                    String line = scan.nextLine();
+                    if (line.equals(username)) {
+                        return true; // username already exists
+                    }
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error checking username duplicates: " + e.getMessage());
+        }
+        return false; // username does not exist
+    }
+
 }
