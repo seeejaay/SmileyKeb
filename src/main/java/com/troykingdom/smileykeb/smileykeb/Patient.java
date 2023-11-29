@@ -93,7 +93,6 @@ public class Patient {
     
     public void saveContactNum(){
         String contactNum = Long.toString(contactNumber);
-        System.out.println(contactNum);
         try {
             String filepath = "PatientInfo/contactnumber" +".txt";
             try(FileWriter fw = new FileWriter(filepath,true)){

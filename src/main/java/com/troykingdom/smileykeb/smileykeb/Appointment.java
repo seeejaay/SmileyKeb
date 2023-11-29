@@ -87,14 +87,11 @@ public class Appointment{
     }
     
     public void savePatientHistory(String treatment){
-            Patient newPat = new Patient();
-            System.out.println("Appointment booked for: " + newPat.getName());
-            System.out.println("Username: " + uName);
+            System.out.println("Appointment booked for user: " + uName);
             System.out.println("Treatment: " + treatment);
             System.out.println("Date: " + date);
             System.out.println();
             saveToFile();
-        
     }
     
     public void openHistory(Scanner scan){
