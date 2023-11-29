@@ -208,5 +208,6 @@ public class Appointment{
         } catch (IOException e) {
             System.out.println("Error Occured: " + e.getMessage());
         }
+        SmileyKeb.menu(scan);
     }
  }
