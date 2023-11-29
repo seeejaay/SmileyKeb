@@ -14,7 +14,17 @@ public class Appointment{
     Treatment trEx = new Extraction();
     Treatment trFi = new Fillings();
     Treatment trRc = new RootCanal();
+    private String treatmenttype;
+    private String uName;
+    private String date;
     
+    public void setUname(String uName){
+        this.uName= uName;
+    }
+    
+    public void setDate (String date){
+        this.date= date;
+    }
     public void bookAppointment(Scanner scan){
         Calendar cd = new Calendar();
         String choice;
@@ -35,22 +45,27 @@ public class Appointment{
         
         switch(treatmentChoice){
             case 1:
+                setTreatment("Check-Up");
                 cd.selectDate();
                 trCh.performAppointment();
                 break;
             case 2:
+                setTreatment("Cleaning");
                 cd.selectDate();
                 trCl.performAppointment();
                 break;
             case 3:
+                setTreatment("Fillings");
                 cd.selectDate();
                 trFi.performAppointment();
                 break;
             case 4: 
+                setTreatment("Root Canal");
                 cd.selectDate();
                 trRc.performAppointment();
                 break;
             case 5:
+                setTreatment("Extraction");
                 cd.selectDate();
                 trEx.performAppointment();
                 break;
@@ -62,6 +77,7 @@ public class Appointment{
                 bookAppointment(scan);
                 break;
         }
+        saveToFile();
         System.out.print("Return to Menu?[Y/N]:");
         choice = scan.nextLine();
 
@@ -86,13 +102,9 @@ public class Appointment{
     }
     
     public void openHistory(Scanner scan){
-        FileReader fr = null;
         try {
-            String uName;
-            System.out.print("Enter Username: ");
-            uName = scan.nextLine();
             String filepath = "PatientHistory/" + uName + ".txt";
-            fr = new FileReader(filepath);
+            FileReader fr = new FileReader(filepath);
             Scanner scanner = new Scanner(fr);
             StringBuilder content = new StringBuilder();
             // read each line of the file and append it to the content
@@ -102,12 +114,28 @@ public class Appointment{
             System.out.println(content.toString());
         } catch (FileNotFoundException e) {
             System.out.println("Error Occured: " + e.getMessage() );
-        } finally {
-            try {
-                fr.close();
-            } catch (IOException e) {
-                 System.out.println("Error Occured: " + e.getMessage() );
-            }
         }
     }
+    public void saveToFile(){
+        Calendar newCal = new Calendar();
+        
+        
+        try{
+            String filepath = "PatientHistory/" + uName + ".txt";
+            FileWriter fw = new FileWriter(filepath,true);
+            fw.write( date+ ", " + getTreatment()  + "\n");
+            fw.close();
+        }catch  (IOException e){
+            System.out.println("Error Occured: " + e.getMessage());
+        }
+    }
+    
+    private void setTreatment(String treatment){
+        this.treatmenttype = treatment;
+    }
+    
+    private String getTreatment(){
+        return treatmenttype;
+    }
+    
  }

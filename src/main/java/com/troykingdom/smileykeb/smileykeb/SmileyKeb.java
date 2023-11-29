@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 // @author Malabanan, Palma, Bay, Vinas
 
 public class SmileyKeb {
+    private static String uName;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
             menu(scan);
@@ -56,7 +57,7 @@ public class SmileyKeb {
     }
     
     public static void Login(Scanner scan){
-        String uName;
+        
         Patient newPat = new Patient();
         System.out.println("Hint: First letter of firstname, lastname and birthyear (ex: LPalma2007)");
         System.out.print("Enter your username: ");
@@ -117,6 +118,7 @@ public class SmileyKeb {
     }
     public static void Appointment(Scanner scan){
         Appointment apt = new Appointment();
+        apt.setUname(uName);
         System.out.println("\n------------MENU------------");
         System.out.println("[1] Book Appointment");
         System.out.println("[2] Open Existing Appointment");
