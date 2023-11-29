@@ -70,7 +70,7 @@ public class Appointment{
                 trEx.performAppointment();
                 break;
             case 6:
-                SmileyKeb.menu(scan);
+                SmileyKeb.Appointment(scan);
                 break;
             default:
                 bookAppointment(scan);
