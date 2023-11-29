@@ -123,7 +123,7 @@ public class Appointment{
         try{
             String filepath = "PatientHistory/" + uName + ".txt";
             FileWriter fw = new FileWriter(filepath,true);
-            fw.write( date+ ", " + getTreatment()  + "\n");
+            fw.write( "DATE: " +date+ "\n" + "TREATMENT: " +getTreatment()+ "\n");
             fw.close();
         }catch  (IOException e){
             System.out.println("Error Occured: " + e.getMessage());
