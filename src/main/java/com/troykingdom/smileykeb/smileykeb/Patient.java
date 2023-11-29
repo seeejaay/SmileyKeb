@@ -13,7 +13,7 @@ public class Patient {
     private int birthDay;
     private String birthMonth;
     private int birthyear;
-    private int contactNumber;
+    private long contactNumber;
     private String uName;
    
     public void setFName(String fName){
@@ -45,7 +45,7 @@ public class Patient {
         return bday;
     }
     
-    public int getconNumber(){
+    public long getconNumber(){
         return contactNumber;
     }
     
@@ -62,7 +62,7 @@ public class Patient {
         this.contactNumber = contactNumber;
     }
     
-    public int getcontactNum(){
+    public long getcontactNum(){
         return contactNumber;
     }
     
