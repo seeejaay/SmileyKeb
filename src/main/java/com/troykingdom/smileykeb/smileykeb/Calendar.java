@@ -1,7 +1,11 @@
 package com.troykingdom.smileykeb.smileykeb;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // @author Malabanan, Palma, Bay, Vinas
@@ -108,21 +112,39 @@ public class Calendar {
     }
 
     public void freeUpDate(String canceledDate) {
-        for (int i = 0; i < dateStatus.length; i++) {
-            if (dateStatus[i].equals("OC") || dateStatus[i].equals(canceledDate)) {
-                dateStatus[i] = String.valueOf(i + 1);
-                System.out.println("Date " + canceledDate + " freed up.");
-                break;  // assuming only one occurrence needs to be freed up
-            }
+        int changeData = Integer.parseInt(canceledDate);
+
+        // Check if the date is marked as "OC" before freeing up
+        if (dateStatus[changeData - 1].equals("OC")) {
+            dateStatus[changeData - 1] = canceledDate;
+            System.out.println("Date " + canceledDate + " freed up.");
+        } else {
+            System.out.println("Date " + canceledDate + " is not marked as 'OC'.");
         }
 
+        // read the existing content from the file
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("Calendar.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+            return;
+        }
+
+        // update the specific date in the content
+        lines.set(changeData - 1, canceledDate);
+
         // write the updated data back to the file
-        try (FileWriter fw = new FileWriter("Calendar.txt")) {
-            for (String dateStatu : dateStatus) {
-                fw.write(dateStatu + "\n");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Calendar.txt"))) {
+            for (String line : lines) {
+                writer.write(line + "\n");
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
 }
