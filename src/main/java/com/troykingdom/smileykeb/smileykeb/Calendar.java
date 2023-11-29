@@ -10,11 +10,11 @@ public class Calendar {
     private final String[] dateStatus = new String[30];
     private String date;
 
-    public void selectDate() {
+    public String selectDate() {
         for (int i = 0; i < dateStatus.length; i++) {
             dateStatus[i] = String.valueOf(i + 1); 
         }
-        
+        String dateIn = null;
     Scanner sc = new Scanner(System.in);
 
     try {
@@ -41,7 +41,7 @@ public class Calendar {
         
         // user input for date to mark as occupied
         System.out.print("\nInsert Date to mark as 'OC': ");
-        String dateIn = sc.nextLine();
+         dateIn = sc.nextLine();
         
         Appointment apt = new Appointment();
         apt.setDate(dateIn);
@@ -78,7 +78,8 @@ public class Calendar {
     } catch (IOException e) {
         System.out.println("Error Occurred: " + e.getMessage());
     }
-        
+     
+    return dateIn;
        
     }
     

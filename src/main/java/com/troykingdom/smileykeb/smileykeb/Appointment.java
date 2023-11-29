@@ -28,7 +28,6 @@ public class Appointment{
     public void bookAppointment(Scanner scan){
         Calendar cd = new Calendar();
         String choice;
-        
         do{
         System.out.println("\nTREATMENTS AVAILABLE:");
         System.out.println("[1] Check-up");
@@ -46,27 +45,27 @@ public class Appointment{
         switch(treatmentChoice){
             case 1:
                 setTreatment("Check-Up");
-                cd.selectDate();
+                setDate(cd.selectDate());
                 trCh.performAppointment();
                 break;
             case 2:
                 setTreatment("Cleaning");
-                cd.selectDate();
+                setDate(cd.selectDate());
                 trCl.performAppointment();
                 break;
             case 3:
                 setTreatment("Fillings");
-                cd.selectDate();
+                setDate(cd.selectDate());
                 trFi.performAppointment();
                 break;
             case 4: 
                 setTreatment("Root Canal");
-                cd.selectDate();
+                setDate(cd.selectDate());
                 trRc.performAppointment();
                 break;
             case 5:
                 setTreatment("Extraction");
-                cd.selectDate();
+               setDate(cd.selectDate());
                 trEx.performAppointment();
                 break;
             case 6:
@@ -78,6 +77,7 @@ public class Appointment{
                 break;
         }
         saveToFile();
+        savePatientHistory(treatmenttype);
         System.out.print("Return to Menu?[Y/N]:");
         choice = scan.nextLine();
 
@@ -88,13 +88,13 @@ public class Appointment{
     
     public void savePatientHistory(String treatment){
             Patient newPat = new Patient();
-            String fileName = "PatientHistory/" + newPat.getUName() + ".txt";
+            String fileName = "PatientHistory/" + uName + ".txt";
 
         try (FileWriter fw = new FileWriter(fileName)){
             fw.write("TREATMENT TYPE: " + treatment);
             System.out.println();
             System.out.println("Appointment booked for: " + newPat.getName());
-            System.out.println("Username: " + newPat.getUName());
+            System.out.println("Username: " + uName);
             System.out.println("Treatment: " + treatment);
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
