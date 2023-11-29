@@ -136,7 +136,7 @@ public class SmileyKeb {
                apt.openHistory(scan);
                 break;
             case 3:
-                //apt.cancelAppointment(scan);
+                apt.cancelAppointment(scan);
                 break;
             case 4:
                 menu(scan);

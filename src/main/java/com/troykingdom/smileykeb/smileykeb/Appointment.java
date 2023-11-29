@@ -1,10 +1,14 @@
 package com.troykingdom.smileykeb.smileykeb;
 import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.Appointment;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 // @author Malabanan, Palma, Bay, Vinas
 
@@ -25,6 +29,7 @@ public class Appointment{
     public void setDate (String date){
         this.date= date;
     }
+    
     public void bookAppointment(Scanner scan){
         Calendar cd = new Calendar();
         String choice;
@@ -129,4 +134,79 @@ public class Appointment{
         return treatmenttype;
     }
     
+    public void cancelAppointment(Scanner scan){
+        System.out.print("Enter date of appointment to cancel: ");
+        int cancel = scan.nextInt();
+        scan.nextLine();
+        String removed = String.valueOf(cancel);
+        
+        try {
+            String filepath = "PatientHistory/" + uName + ".txt";
+            String tempFile = "temp.txt";
+            File oldFile = new File(filepath);
+            File newFile = new File(tempFile);
+
+            String currentLine;
+            String items[];
+
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+
+            int lineNumber = 0;
+            boolean found = false;
+
+            while ((currentLine = br.readLine()) != null) {
+                items = currentLine.split(", ");
+                lineNumber++;
+
+                if (items.length > 0 && items[0].equalsIgnoreCase("DATE: " + removed)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                System.out.println("Appointment not found for date: " + removed);
+                return;
+            }
+
+            br.close();
+            fr.close();
+            fr = new FileReader(filepath);
+            br = new BufferedReader(fr);
+
+            for (int i = 0; i < lineNumber - 1; i++) {
+                currentLine = br.readLine();
+                pw.println(currentLine);
+            }
+
+            br.readLine();
+
+            while ((currentLine = br.readLine()) != null) {
+                pw.println(currentLine);
+            }
+
+            pw.flush();
+            pw.close();
+            br.close();
+            fr.close();
+            bw.close();
+            fw.close();
+
+            oldFile.delete();
+            File dump = new File(filepath);
+            newFile.renameTo(dump);
+
+            System.out.println("Appointment canceled for date: " + removed);
+            Calendar calendar = new Calendar();
+            calendar.freeUpDate(removed);
+            
+        } catch (IOException e) {
+            System.out.println("Error Occured: " + e.getMessage());
+        }
+    }
  }

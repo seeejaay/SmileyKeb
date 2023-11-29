@@ -1,2 +1,0 @@
-DATE: 14, TREATMENT: Cleaning
-DATE: 13, TREATMENT: Fillings

@@ -7,8 +7,14 @@ import java.util.Scanner;
 // @author Malabanan, Palma, Bay, Vinas
  
 public class Calendar {
-    private final String[] dateStatus = new String[30];
-    private String date;
+    private final String[] dateStatus;
+
+    public Calendar() {
+        this.dateStatus = new String[30];
+        for (int i = 0; i < dateStatus.length; i++) {
+            dateStatus[i] = String.valueOf(i + 1);
+        }
+    }
 
     public String selectDate() {
         for (int i = 0; i < dateStatus.length; i++) {
@@ -83,5 +89,40 @@ public class Calendar {
        
     }
     
-    
+    public void markDateAsOccupied(String dateIn) {
+        for (int i = 0; i < dateStatus.length; i++) {
+            if (dateStatus[i].equals(dateIn) && !dateStatus[i].equals("OC")) {
+                dateStatus[i] = "OC";
+                System.out.println("Date selected: " + dateIn + " marked as 'OC'.");
+            }
+        }
+
+        // write the updated data back to the file
+        try (FileWriter fw = new FileWriter("Calendar.txt")) {
+            for (String dateStatu : dateStatus) {
+                fw.write(dateStatu + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+    public void freeUpDate(String canceledDate) {
+        for (int i = 0; i < dateStatus.length; i++) {
+            if (dateStatus[i].equals("OC") && dateStatus[i].equals(canceledDate)) {
+                dateStatus[i] = String.valueOf(i + 1);
+                System.out.println("Date " + canceledDate + " freed up.");
+                break;  // assuming only one occurrence needs to be freed up
+            }
+        }
+
+        // write the updated data back to the file
+        try (FileWriter fw = new FileWriter("Calendar.txt")) {
+            for (String dateStatu : dateStatus) {
+                fw.write(dateStatu + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
 }
