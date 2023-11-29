@@ -1,5 +1,5 @@
 package com.troykingdom.smileykeb.smileykeb;
-import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.menu;
+import static com.troykingdom.smileykeb.smileykeb.SmileyKeb.Appointment;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -36,11 +36,12 @@ public class Appointment{
         System.out.println("[4] Root Canal");
         System.out.println("[5] Extraction");
         System.out.println("[6] Back to Menu");
-        System.out.println("----------------------------");
+        System.out.println("-----------------------------");
         
         System.out.print("Enter treatment choice: ");
         int treatmentChoice = scan.nextInt();
         scan.nextLine();
+        System.out.println("-----------------------------");
         
         switch(treatmentChoice){
             case 1:
@@ -77,12 +78,12 @@ public class Appointment{
         }
         saveToFile();
         savePatientHistory(treatmenttype);
-        System.out.print("Return to Menu?[Y/N]:");
+        System.out.print("Return to Menu?[Y/N]: ");
         choice = scan.nextLine();
 
         choice = choice.toUpperCase();
         } while("N".equals(choice) || "NO".equals(choice));
-           menu(scan);
+           Appointment(scan);
     }
     
     public void savePatientHistory(String treatment){
@@ -123,7 +124,7 @@ public class Appointment{
         try {
             String filepath = "PatientHistory/" + uName + ".txt";
             FileWriter fw = new FileWriter(filepath,true);
-            fw.write( "DATE: " +date+ "\n" + "TREATMENT: " +getTreatment()+ "\n");
+            fw.write( "DATE: " +date+ ", " + "TREATMENT: " +getTreatment()+ "\n");
             fw.close();
         } catch  (IOException e){
             System.out.println("Error Occured: " + e.getMessage());

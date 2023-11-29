@@ -18,16 +18,16 @@ public class SmileyKeb {
         
         while(!validInput){
             try{
-                System.out.println("Welcome to SmileyKeb Dental Clinic\n");
-                System.out.println("------------MENU------------");
+                System.out.println("\nWelcome to SmileyKeb Dental Clinic\n");
+                System.out.println("-----------SIGN IN-----------");
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
                 System.out.println("[3] Exit");
-                System.out.println("----------------------------");
+                System.out.println("-----------------------------");
                 System.out.print("Enter Choice: ");
                 inp = scan.nextInt();
                 scan.nextLine();
-                System.out.println("----------------------------");
+                System.out.println("-----------------------------");
 
                 switch(inp){
                     case 1: 
@@ -116,17 +116,17 @@ public class SmileyKeb {
     public static void Appointment(Scanner scan){
         Appointment apt = new Appointment();
         apt.setUname(uName);
-        System.out.println("\n------------MENU------------");
+        System.out.println("\n------------MENU-------------");
         System.out.println("[1] Book Appointment");
         System.out.println("[2] Open Existing Appointment");
         System.out.println("[3] Cancel Appointment");
-        System.out.println("[4] Exit");
-        System.out.println("----------------------------");
+        System.out.println("[4] Logout");
+        System.out.println("-----------------------------");
 
         System.out.print("Enter choice: ");
         int choice = scan.nextInt();
         scan.nextLine();
-        System.out.println("----------------------------");
+        System.out.println("-----------------------------");
 
         switch(choice){
             case 1:
@@ -139,7 +139,7 @@ public class SmileyKeb {
                 //apt.cancelAppointment(scan);
                 break;
             case 4:
-                System.exit(0);
+                menu(scan);
                 break;
             default:
                 System.out.println("Invalid Choice. Kindly enter again.");
