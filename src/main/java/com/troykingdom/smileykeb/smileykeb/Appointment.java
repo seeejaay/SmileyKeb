@@ -113,6 +113,7 @@ public class Appointment{
         } catch (FileNotFoundException e) {
             System.out.println("Error Occured: " + e.getMessage() );
         }
+        SmileyKeb.menu(scan);
     }
     
     public void saveToFile(){
