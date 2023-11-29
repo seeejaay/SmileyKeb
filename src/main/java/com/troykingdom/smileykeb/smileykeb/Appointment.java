@@ -113,7 +113,7 @@ public class Appointment{
         } catch (FileNotFoundException e) {
             System.out.println("Error Occured: " + e.getMessage() );
         }
-        SmileyKeb.menu(scan);
+        SmileyKeb.Appointment(scan);
     }
     
     public void saveToFile(){
@@ -209,6 +209,6 @@ public class Appointment{
         } catch (IOException e) {
             System.out.println("Error Occured: " + e.getMessage());
         }
-        SmileyKeb.menu(scan);
+        SmileyKeb.Appointment(scan);
     }
  }
