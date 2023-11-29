@@ -171,7 +171,7 @@ public class Appointment{
 
             if (!found) {
                 System.out.println("Appointment not found for date: " + removed);
-                return;
+                SmileyKeb.menu(scan);
             }
 
             br.close();
