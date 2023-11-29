@@ -95,7 +95,7 @@ public class SmileyKeb {
             newPat.setbirthYear(scan.nextInt());
             
             System.out.print("Enter your Contact #: ");
-            newPat.setcontactNum((int) scan.nextLong());
+            newPat.setcontactNum(scan.nextLong());
             scan.nextLine();
             
             newPat.setUName();

@@ -58,7 +58,7 @@ public class Patient {
         this.uName = userName;
     }
     
-    public void setcontactNum(int contactNumber ){
+    public void setcontactNum(long contactNumber ){
         this.contactNumber = contactNumber;
     }
     
@@ -92,10 +92,12 @@ public class Patient {
     }
     
     public void saveContactNum(){
+        String contactNum = Long.toString(contactNumber);
+        System.out.println(contactNum);
     try{
         String filepath = "PatientInfo/contactnumber" +".txt";
         try(FileWriter fw = new FileWriter(filepath,true)){
-            fw.write(getcontactNum() + "\n" );
+            fw.write(contactNum + "\n" );
             fw.close();
         }
     } catch (IOException e){
