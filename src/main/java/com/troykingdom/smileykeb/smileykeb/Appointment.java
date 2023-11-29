@@ -114,7 +114,6 @@ public class Appointment{
     }
     
     public void saveToFile(){
-        Calendar newCal = new Calendar();
         try {
             String filepath = "PatientHistory/" + uName + ".txt";
             FileWriter fw = new FileWriter(filepath,true);
