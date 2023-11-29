@@ -119,7 +119,7 @@ public class Calendar {
             dateStatus[changeData - 1] = canceledDate;
             System.out.println("Date " + canceledDate + " freed up.");
         } else {
-            System.out.println("Date " + canceledDate + " is not marked as 'OC'.");
+            System.out.println("'QC' mark is removed for " + canceledDate);
         }
 
         // read the existing content from the file
