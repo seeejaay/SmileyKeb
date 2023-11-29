@@ -19,7 +19,6 @@ public class SmileyKeb {
         while(!validInput){
             try{
                 System.out.println("Welcome to SmileyKeb Dental Clinic\n");
-
                 System.out.println("------------MENU------------");
                 System.out.println("[1] Login");
                 System.out.println("[2] SignUp");
@@ -34,17 +33,15 @@ public class SmileyKeb {
                     case 1: 
                         validInput =true;
                         Login(scan);
-
-                    break;
+                        break;
                     case 2:
                         validInput =true;
                         signUp(scan);
-                    break;
+                        break;
                     case 3:
                         System.exit(0);
                     default:
                         System.out.println("Invalid Input");
-
                         break;
                 }
 
@@ -57,7 +54,6 @@ public class SmileyKeb {
     }
     
     public static void Login(Scanner scan){
-        
         Patient newPat = new Patient();
         System.out.println("Hint: First letter of firstname, lastname and birthyear (ex: LPalma2007)");
         System.out.print("Enter your username: ");
@@ -86,8 +82,8 @@ public class SmileyKeb {
 
             System.out.print("Enter your BirthDate: ");
             newPat.setbirthDay(scan.nextInt());
-
             scan.nextLine();
+            
             System.out.print("Enter your BirthMonth: ");
             newPat.setbirthMonth(scan.nextLine());
 
@@ -116,6 +112,7 @@ public class SmileyKeb {
             menu(scan);
         }
     }
+    
     public static void Appointment(Scanner scan){
         Appointment apt = new Appointment();
         apt.setUname(uName);

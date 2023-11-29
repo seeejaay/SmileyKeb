@@ -69,7 +69,6 @@ public class Appointment{
                 trEx.performAppointment();
                 break;
             case 6:
-
                 SmileyKeb.menu(scan);
                 break;
             default:
@@ -96,6 +95,8 @@ public class Appointment{
             System.out.println("Appointment booked for: " + newPat.getName());
             System.out.println("Username: " + uName);
             System.out.println("Treatment: " + treatment);
+            System.out.println("Date: " + date);
+            System.out.println();
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
@@ -116,16 +117,15 @@ public class Appointment{
             System.out.println("Error Occured: " + e.getMessage() );
         }
     }
+    
     public void saveToFile(){
         Calendar newCal = new Calendar();
-        
-        
-        try{
+        try {
             String filepath = "PatientHistory/" + uName + ".txt";
             FileWriter fw = new FileWriter(filepath,true);
             fw.write( "DATE: " +date+ "\n" + "TREATMENT: " +getTreatment()+ "\n");
             fw.close();
-        }catch  (IOException e){
+        } catch  (IOException e){
             System.out.println("Error Occured: " + e.getMessage());
         }
     }

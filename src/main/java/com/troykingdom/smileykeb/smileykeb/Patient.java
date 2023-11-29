@@ -80,7 +80,7 @@ public class Patient {
     }
     
     public void saveName(){
-        try{
+        try {
             String filepath = "PatientInfo/names" +  ".txt";
             try(FileWriter fw = new FileWriter(filepath,true)){
                 fw.write(getName() + "\n" );
@@ -94,25 +94,25 @@ public class Patient {
     public void saveContactNum(){
         String contactNum = Long.toString(contactNumber);
         System.out.println(contactNum);
-    try{
-        String filepath = "PatientInfo/contactnumber" +".txt";
-        try(FileWriter fw = new FileWriter(filepath,true)){
-            fw.write(contactNum + "\n" );
-            fw.close();
-        }
-    } catch (IOException e){
-        System.out.println("Error saving patient details: " + e.getMessage());   
+        try {
+            String filepath = "PatientInfo/contactnumber" +".txt";
+            try(FileWriter fw = new FileWriter(filepath,true)){
+                fw.write(contactNum + "\n" );
+                fw.close();
+            }
+        } catch (IOException e){
+            System.out.println("Error saving patient details: " + e.getMessage());   
         }
     }
     
     public void saveBirthDay(){
-         try{
+        try{
             String filepath = "PatientInfo/birthday" +".txt";
             try(FileWriter fw = new FileWriter(filepath,true)){
                 fw.write(getbirthDay() + "\n" );
                 fw.close();
             }
-        }catch (IOException e){
+        } catch (IOException e){
             System.out.println("Error saving patient details: " + e.getMessage());   
         }
     }
@@ -130,11 +130,11 @@ public class Patient {
     }
     
     public void createUserFile(){
-        try{
+        try {
             String filepath = "PatientHistory/" + getUName() + ".txt";
             File file = new File(filepath);
             file.createNewFile();
-        }catch (IOException e){
+        } catch (IOException e){
             System.out.println("Error creating File: " + e.getMessage());
         }
     }
