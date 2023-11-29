@@ -135,12 +135,12 @@ public class Appointment{
         return treatmenttype;
     }
     
-    public void cancelAppointment(Scanner scan){
+    public void cancelAppointment(Scanner scan) {
         System.out.print("Enter date of appointment to cancel: ");
         int cancel = scan.nextInt();
         scan.nextLine();
         String removed = String.valueOf(cancel);
-        
+
         try {
             String filepath = "PatientHistory/" + uName + ".txt";
             String tempFile = "temp.txt";
@@ -166,35 +166,20 @@ public class Appointment{
 
                 if (items.length > 0 && items[0].equalsIgnoreCase("DATE: " + removed)) {
                     found = true;
-                    break;
+                    System.out.println("Appointment found for date: " + removed);
+                } else {
+                    pw.println(currentLine);
                 }
             }
 
             if (!found) {
                 System.out.println("Appointment not found for date: " + removed);
-                SmileyKeb.menu(scan);
             }
 
             br.close();
             fr.close();
-            fr = new FileReader(filepath);
-            br = new BufferedReader(fr);
-
-            for (int i = 0; i < lineNumber - 1; i++) {
-                currentLine = br.readLine();
-                pw.println(currentLine);
-            }
-
-            br.readLine();
-
-            while ((currentLine = br.readLine()) != null) {
-                pw.println(currentLine);
-            }
-
             pw.flush();
             pw.close();
-            br.close();
-            fr.close();
             bw.close();
             fw.close();
 
@@ -202,13 +187,17 @@ public class Appointment{
             File dump = new File(filepath);
             newFile.renameTo(dump);
 
-            System.out.println("Appointment canceled for date: " + removed);
-            Calendar calendar = new Calendar();
-            calendar.freeUpDate(removed);
-            
+            if (found) {
+                System.out.println("Appointment canceled for date: " + removed);
+                Calendar calendar = new Calendar();
+                calendar.freeUpDate(removed);
+            }
+
         } catch (IOException e) {
-            System.out.println("Error Occured: " + e.getMessage());
+            System.out.println("Error Occurred: " + e.getMessage());
         }
+
         SmileyKeb.Appointment(scan);
     }
+
  }

@@ -109,7 +109,7 @@ public class Calendar {
 
     public void freeUpDate(String canceledDate) {
         for (int i = 0; i < dateStatus.length; i++) {
-            if (dateStatus[i].equals("OC") && dateStatus[i].equals(canceledDate)) {
+            if (dateStatus[i].equals("OC") || dateStatus[i].equals(canceledDate)) {
                 dateStatus[i] = String.valueOf(i + 1);
                 System.out.println("Date " + canceledDate + " freed up.");
                 break;  // assuming only one occurrence needs to be freed up
